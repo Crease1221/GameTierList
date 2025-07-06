@@ -3,412 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming Tier List Spreadsheet</title>
+    <title>Cris's Gaming Tier List</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            padding: 20px;
         }
-        
+
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-        
-        .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 20px;
+
+        h1 {
             text-align: center;
-        }
-        
-        .header h1 {
-            margin: 0;
+            color: #333;
+            margin-bottom: 10px;
             font-size: 2.5em;
-            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .header p {
-            margin: 10px 0 0 0;
-            opacity: 0.9;
-            font-size: 1.1em;
-        }
-        
-        .controls {
-            padding: 20px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .add-game-form {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        
-        .add-game-form input, .add-game-form select, .add-game-form textarea {
-            padding: 8px 12px;
-            border: 2px solid #dee2e6;
-            border-radius: 6px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        
-        .add-game-form input:focus, .add-game-form select:focus, .add-game-form textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .add-game-form input[type="text"] {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .add-game-form input[type="number"] {
-            width: 80px;
-        }
-        
-        .add-game-form textarea {
-            flex: 1;
-            min-width: 200px;
-            resize: vertical;
-            height: 60px;
-        }
-        
-        .add-game-form button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: transform 0.2s;
-        }
-        
-        .add-game-form button:hover {
-            transform: translateY(-2px);
-        }
-        
-        .spreadsheet {
-            overflow-x: auto;
-            padding: 20px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-        
-        th {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 12px 8px;
-            text-align: left;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
-        td {
-            padding: 10px 8px;
-            border-bottom: 1px solid #e9ecef;
-            vertical-align: top;
-        }
-        
-        tbody tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .tier-s { background-color: #ff6b6b; color: white; font-weight: bold; }
-        .tier-a { background-color: #4ecdc4; color: white; font-weight: bold; }
-        .tier-b { background-color: #45b7d1; color: white; font-weight: bold; }
-        .tier-c { background-color: #96ceb4; color: white; font-weight: bold; }
-        .tier-d { background-color: #ffeaa7; color: #2d3436; font-weight: bold; }
-        .tier-f { background-color: #636e72; color: white; font-weight: bold; }
-        
-        .tier-badge {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
+
+        .subtitle {
             text-align: center;
-            min-width: 30px;
-            display: inline-block;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.2em;
         }
-        
-        .rating-cell {
-            font-weight: bold;
-            font-size: 16px;
-            text-align: center;
-        }
-        
-        .delete-btn {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-        
-        .delete-btn:hover {
-            background: #c82333;
-        }
-        
+
         .stats {
-            padding: 20px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
-            gap: 20px;
         }
-        
+
         .stat-item {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 15px;
             text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
+
         .stat-number {
             font-size: 2em;
             font-weight: bold;
-            color: #667eea;
+            display: block;
         }
-        
+
         .stat-label {
-            color: #6c757d;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .tier-section {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tier-header {
+            padding: 20px;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .s-tier { background: linear-gradient(45deg, #ff6b6b, #ff8e8e); }
+        .a-tier { background: linear-gradient(45deg, #4ecdc4, #44a08d); }
+        .b-tier { background: linear-gradient(45deg, #45b7d1, #96c93d); }
+        .c-tier { background: linear-gradient(45deg, #f9ca24, #f0932b); }
+        .d-tier { background: linear-gradient(45deg, #eb4d4b, #6c5ce7); }
+
+        .tier-content {
+            background: white;
+            padding: 20px;
+            min-height: 120px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .game-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 200px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .game-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .game-ratings {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .rating {
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+
+        .game-date {
+            color: #666;
             font-size: 0.9em;
         }
-        
-        .export-btn {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            margin-left: 10px;
+
+        .empty-tier {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 40px;
         }
-        
-        .export-btn:hover {
-            background: #218838;
+
+        .last-updated {
+            text-align: center;
+            color: #666;
+            margin-top: 30px;
+            font-style: italic;
         }
-        
+
         @media (max-width: 768px) {
-            .add-game-form {
-                flex-direction: column;
-                align-items: stretch;
+            .container {
+                padding: 20px;
             }
             
-            .add-game-form input, .add-game-form select, .add-game-form textarea {
-                width: 100%;
-                box-sizing: border-box;
+            h1 {
+                font-size: 2em;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .game-card {
+                min-width: 150px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🎮 Gaming Tier List Tracker</h1>
-            <p>Building the ultimate gaming tier list one masterpiece at a time</p>
-        </div>
-        
-        <div class="controls">
-            <form class="add-game-form" id="gameForm">
-                <input type="text" id="gameTitle" placeholder="Game Title" required>
-                <input type="number" id="hoursPlayed" placeholder="Hours" min="0" step="0.1" required>
-                <input type="number" id="storyRating" placeholder="Story /10" min="0" max="10" step="0.1" required>
-                <input type="number" id="gameplayRating" placeholder="Gameplay /10" min="0" max="10" step="0.1" required>
-                <input type="number" id="overallRating" placeholder="Overall /10" min="0" max="10" step="0.1" required>
-                <select id="tierRating" required>
-                    <option value="">Select Tier</option>
-                    <option value="S">S Tier</option>
-                    <option value="A">A Tier</option>
-                    <option value="B">B Tier</option>
-                    <option value="C">C Tier</option>
-                    <option value="D">D Tier</option>
-                    <option value="F">F Tier</option>
-                </select>
-                <select id="replayValue" required>
-                    <option value="">Replay?</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                    <option value="Maybe">Maybe</option>
-                </select>
-                <textarea id="gameNotes" placeholder="Quick thoughts/notes about the game..."></textarea>
-                <button type="submit">Add Game</button>
-                <button type="button" class="export-btn" onclick="exportToCSV()">Export CSV</button>
-            </form>
-        </div>
-        
-        <div class="spreadsheet">
-            <table id="gameTable">
-                <thead>
-                    <tr>
-                        <th>Date Added</th>
-                        <th>Game Title</th>
-                        <th>Hours Played</th>
-                        <th>Story Rating</th>
-                        <th>Gameplay Rating</th>
-                        <th>Overall Rating</th>
-                        <th>Tier</th>
-                        <th>Replay Value</th>
-                        <th>Notes</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="gameTableBody">
-                </tbody>
-            </table>
-        </div>
+        <h1>🎮 Cris's Gaming Tier List</h1>
+        <p class="subtitle">Ranking gaming's greatest hits, one masterpiece at a time</p>
         
         <div class="stats">
             <div class="stat-item">
-                <div class="stat-number" id="totalGames">0</div>
-                <div class="stat-label">Total Games</div>
+                <span class="stat-number" id="total-games">0</span>
+                <span class="stat-label">Games Ranked</span>
             </div>
             <div class="stat-item">
-                <div class="stat-number" id="totalHours">0</div>
-                <div class="stat-label">Total Hours</div>
+                <span class="stat-number" id="hours-played">0</span>
+                <span class="stat-label">Hours Played</span>
             </div>
             <div class="stat-item">
-                <div class="stat-number" id="averageRating">0</div>
-                <div class="stat-label">Average Rating</div>
+                <span class="stat-number" id="avg-rating">0</span>
+                <span class="stat-label">Avg Rating</span>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" id="sTierCount">0</div>
-                <div class="stat-label">S-Tier Games</div>
+        </div>
+
+        <div class="tier-section">
+            <div class="tier-header s-tier">S TIER - Masterpieces</div>
+            <div class="tier-content" id="s-tier-content">
+                <div class="empty-tier">No games yet - waiting for that perfect 10/10!</div>
             </div>
+        </div>
+
+        <div class="tier-section">
+            <div class="tier-header a-tier">A TIER - Excellent</div>
+            <div class="tier-content" id="a-tier-content">
+                <div class="empty-tier">Coming soon...</div>
+            </div>
+        </div>
+
+        <div class="tier-section">
+            <div class="tier-header b-tier">B TIER - Good</div>
+            <div class="tier-content" id="b-tier-content">
+                <div class="empty-tier">Coming soon...</div>
+            </div>
+        </div>
+
+        <div class="tier-section">
+            <div class="tier-header c-tier">C TIER - Okay</div>
+            <div class="tier-content" id="c-tier-content">
+                <div class="empty-tier">Coming soon...</div>
+            </div>
+        </div>
+
+        <div class="tier-section">
+            <div class="tier-header d-tier">D TIER - Disappointing</div>
+            <div class="tier-content" id="d-tier-content">
+                <div class="empty-tier">Hopefully this stays empty...</div>
+            </div>
+        </div>
+
+        <div class="last-updated">
+            Last updated: <span id="last-update">Never</span>
         </div>
     </div>
 
     <script>
-        let games = [];
-        let gameIdCounter = 1;
+        // ========================================
+        // EASY GAME MANAGEMENT - ADD YOUR GAMES HERE
+        // ========================================
+        
+        const games = [
+            // Example games - replace with your actual games
+            // {
+            //     title: "The Witcher 3",
+            //     tier: "S",
+            //     storyRating: 10,
+            //     gameplayRating: 9,
+            //     overallRating: 9.5,
+            //     hoursPlayed: 85,
+            //     dateCompleted: "2024-01-15",
+            //     notes: "Amazing story and characters"
+            // },
+            
+            // ADD YOUR GAMES HERE:
+            // Copy the format above and add your games
+            // Tier options: "S", "A", "B", "C", "D"
+            // Date format: "YYYY-MM-DD"
+            
+        ];
 
-        function addGame(gameData) {
-            const game = {
-                id: gameIdCounter++,
-                dateAdded: new Date().toLocaleDateString(),
-                ...gameData
-            };
-            games.push(game);
-            renderTable();
-            updateStats();
-        }
+        // ========================================
+        // AUTO-GENERATED CONTENT - DON'T EDIT BELOW
+        // ========================================
 
-        function deleteGame(gameId) {
-            games = games.filter(game => game.id !== gameId);
-            renderTable();
-            updateStats();
-        }
-
-        function getTierClass(tier) {
-            return `tier-${tier.toLowerCase()}`;
-        }
-
-        function renderTable() {
-            const tbody = document.getElementById('gameTableBody');
-            tbody.innerHTML = '';
-
-            games.forEach(game => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${game.dateAdded}</td>
-                    <td><strong>${game.title}</strong></td>
-                    <td>${game.hoursPlayed}</td>
-                    <td class="rating-cell">${game.storyRating}/10</td>
-                    <td class="rating-cell">${game.gameplayRating}/10</td>
-                    <td class="rating-cell">${game.overallRating}/10</td>
-                    <td><span class="tier-badge ${getTierClass(game.tier)}">${game.tier}</span></td>
-                    <td>${game.replayValue}</td>
-                    <td>${game.notes}</td>
-                    <td><button class="delete-btn" onclick="deleteGame(${game.id})">Delete</button></td>
-                `;
-                tbody.appendChild(row);
+        function renderGames() {
+            // Clear all tier content
+            ['s', 'a', 'b', 'c', 'd'].forEach(tier => {
+                const container = document.getElementById(`${tier}-tier-content`);
+                container.innerHTML = '';
             });
+
+            // Sort games by overall rating (descending) within each tier
+            const sortedGames = games.sort((a, b) => b.overallRating - a.overallRating);
+
+            // Group games by tier
+            const tierGroups = {
+                S: [],
+                A: [],
+                B: [],
+                C: [],
+                D: []
+            };
+
+            sortedGames.forEach(game => {
+                if (tierGroups[game.tier]) {
+                    tierGroups[game.tier].push(game);
+                }
+            });
+
+            // Render each tier
+            Object.entries(tierGroups).forEach(([tier, tierGames]) => {
+                const container = document.getElementById(`${tier.toLowerCase()}-tier-content`);
+                
+                if (tierGames.length === 0) {
+                    const emptyMessages = {
+                        S: "No games yet - waiting for that perfect 10/10!",
+                        A: "Coming soon...",
+                        B: "Coming soon...",
+                        C: "Coming soon...",
+                        D: "Hopefully this stays empty..."
+                    };
+                    container.innerHTML = `<div class="empty-tier">${emptyMessages[tier]}</div>`;
+                } else {
+                    container.innerHTML = '';
+                    tierGames.forEach(game => {
+                        const gameCard = createGameCard(game);
+                        container.appendChild(gameCard);
+                    });
+                }
+            });
+
+            updateStats();
+        }
+
+        function createGameCard(game) {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            
+            const formattedDate = new Date(game.dateCompleted).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+
+            card.innerHTML = `
+                <div class="game-title">${game.title}</div>
+                <div class="game-ratings">
+                    <span class="rating">Story: ${game.storyRating}/10</span>
+                    <span class="rating">Gameplay: ${game.gameplayRating}/10</span>
+                    <span class="rating">Overall: ${game.overallRating}/10</span>
+                </div>
+                <div class="game-date">Completed: ${formattedDate}</div>
+                <div class="game-date">${game.hoursPlayed}h played</div>
+                ${game.notes ? `<div class="game-date" style="margin-top: 5px; font-style: italic;">"${game.notes}"</div>` : ''}
+            `;
+
+            return card;
         }
 
         function updateStats() {
             const totalGames = games.length;
-            const totalHours = games.reduce((sum, game) => sum + parseFloat(game.hoursPlayed), 0);
-            const averageRating = totalGames > 0 ? (games.reduce((sum, game) => sum + parseFloat(game.overallRating), 0) / totalGames).toFixed(1) : 0;
-            const sTierCount = games.filter(game => game.tier === 'S').length;
+            const totalHours = games.reduce((sum, game) => sum + game.hoursPlayed, 0);
+            const avgRating = totalGames > 0 ? (games.reduce((sum, game) => sum + game.overallRating, 0) / totalGames).toFixed(1) : 0;
 
-            document.getElementById('totalGames').textContent = totalGames;
-            document.getElementById('totalHours').textContent = totalHours.toFixed(1);
-            document.getElementById('averageRating').textContent = averageRating;
-            document.getElementById('sTierCount').textContent = sTierCount;
-        }
+            document.getElementById('total-games').textContent = totalGames;
+            document.getElementById('hours-played').textContent = totalHours;
+            document.getElementById('avg-rating').textContent = avgRating;
 
-        function exportToCSV() {
-            if (games.length === 0) {
-                alert('No games to export!');
-                return;
+            // Update last updated date
+            if (games.length > 0) {
+                const lastGameDate = games.reduce((latest, game) => {
+                    return new Date(game.dateCompleted) > new Date(latest.dateCompleted) ? game : latest;
+                });
+                document.getElementById('last-update').textContent = new Date(lastGameDate.dateCompleted).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
             }
-
-            const headers = ['Date Added', 'Game Title', 'Hours Played', 'Story Rating', 'Gameplay Rating', 'Overall Rating', 'Tier', 'Replay Value', 'Notes'];
-            const csvContent = [
-                headers.join(','),
-                ...games.map(game => [
-                    game.dateAdded,
-                    `"${game.title}"`,
-                    game.hoursPlayed,
-                    game.storyRating,
-                    game.gameplayRating,
-                    game.overallRating,
-                    game.tier,
-                    game.replayValue,
-                    `"${game.notes}"`
-                ].join(','))
-            ].join('\n');
-
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'gaming_tier_list.csv';
-            a.click();
-            window.URL.revokeObjectURL(url);
         }
 
-        document.getElementById('gameForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const gameData = {
-                title: document.getElementById('gameTitle').value,
-                hoursPlayed: parseFloat(document.getElementById('hoursPlayed').value),
-                storyRating: parseFloat(document.getElementById('storyRating').value),
-                gameplayRating: parseFloat(document.getElementById('gameplayRating').value),
-                overallRating: parseFloat(document.getElementById('overallRating').value),
-                tier: document.getElementById('tierRating').value,
-                replayValue: document.getElementById('replayValue').value,
-                notes: document.getElementById('gameNotes').value
-            };
-
-            addGame(gameData);
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Initialize
-        renderTable();
-        updateStats();
+        // Initialize the page
+        renderGames();
     </script>
 </body>
 </html>
