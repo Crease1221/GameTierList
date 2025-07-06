@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Tier List Spreadsheet</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .controls {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .add-game-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .add-game-form input, .add-game-form select, .add-game-form textarea {
+            padding: 8px 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .add-game-form input:focus, .add-game-form select:focus, .add-game-form textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .add-game-form input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .add-game-form input[type="number"] {
+            width: 80px;
+        }
+        
+        .add-game-form textarea {
+            flex: 1;
+            min-width: 200px;
+            resize: vertical;
+            height: 60px;
+        }
+        
+        .add-game-form button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        
+        .add-game-form button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .spreadsheet {
+            overflow-x: auto;
+            padding: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: top;
+        }
+        
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .tier-s { background-color: #ff6b6b; color: white; font-weight: bold; }
+        .tier-a { background-color: #4ecdc4; color: white; font-weight: bold; }
+        .tier-b { background-color: #45b7d1; color: white; font-weight: bold; }
+        .tier-c { background-color: #96ceb4; color: white; font-weight: bold; }
+        .tier-d { background-color: #ffeaa7; color: #2d3436; font-weight: bold; }
+        .tier-f { background-color: #636e72; color: white; font-weight: bold; }
+        
+        .tier-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            min-width: 30px;
+            display: inline-block;
+        }
+        
+        .rating-cell {
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .delete-btn:hover {
+            background: #c82333;
+        }
+        
+        .stats {
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .export-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .export-btn:hover {
+            background: #218838;
+        }
+        
+        @media (max-width: 768px) {
+            .add-game-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .add-game-form input, .add-game-form select, .add-game-form textarea {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 Gaming Tier List Tracker</h1>
+            <p>Building the ultimate gaming tier list one masterpiece at a time</p>
+        </div>
+        
+        <div class="controls">
+            <form class="add-game-form" id="gameForm">
+                <input type="text" id="gameTitle" placeholder="Game Title" required>
+                <input type="number" id="hoursPlayed" placeholder="Hours" min="0" step="0.1" required>
+                <input type="number" id="storyRating" placeholder="Story /10" min="0" max="10" step="0.1" required>
+                <input type="number" id="gameplayRating" placeholder="Gameplay /10" min="0" max="10" step="0.1" required>
+                <input type="number" id="overallRating" placeholder="Overall /10" min="0" max="10" step="0.1" required>
+                <select id="tierRating" required>
+                    <option value="">Select Tier</option>
+                    <option value="S">S Tier</option>
+                    <option value="A">A Tier</option>
+                    <option value="B">B Tier</option>
+                    <option value="C">C Tier</option>
+                    <option value="D">D Tier</option>
+                    <option value="F">F Tier</option>
+                </select>
+                <select id="replayValue" required>
+                    <option value="">Replay?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="Maybe">Maybe</option>
+                </select>
+                <textarea id="gameNotes" placeholder="Quick thoughts/notes about the game..."></textarea>
+                <button type="submit">Add Game</button>
+                <button type="button" class="export-btn" onclick="exportToCSV()">Export CSV</button>
+            </form>
+        </div>
+        
+        <div class="spreadsheet">
+            <table id="gameTable">
+                <thead>
+                    <tr>
+                        <th>Date Added</th>
+                        <th>Game Title</th>
+                        <th>Hours Played</th>
+                        <th>Story Rating</th>
+                        <th>Gameplay Rating</th>
+                        <th>Overall Rating</th>
+                        <th>Tier</th>
+                        <th>Replay Value</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="gameTableBody">
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="totalGames">0</div>
+                <div class="stat-label">Total Games</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalHours">0</div>
+                <div class="stat-label">Total Hours</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="averageRating">0</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="sTierCount">0</div>
+                <div class="stat-label">S-Tier Games</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let games = [];
+        let gameIdCounter = 1;
+
+        function addGame(gameData) {
+            const game = {
+                id: gameIdCounter++,
+                dateAdded: new Date().toLocaleDateString(),
+                ...gameData
+            };
+            games.push(game);
+            renderTable();
+            updateStats();
+        }
+
+        function deleteGame(gameId) {
+            games = games.filter(game => game.id !== gameId);
+            renderTable();
+            updateStats();
+        }
+
+        function getTierClass(tier) {
+            return `tier-${tier.toLowerCase()}`;
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('gameTableBody');
+            tbody.innerHTML = '';
+
+            games.forEach(game => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${game.dateAdded}</td>
+                    <td><strong>${game.title}</strong></td>
+                    <td>${game.hoursPlayed}</td>
+                    <td class="rating-cell">${game.storyRating}/10</td>
+                    <td class="rating-cell">${game.gameplayRating}/10</td>
+                    <td class="rating-cell">${game.overallRating}/10</td>
+                    <td><span class="tier-badge ${getTierClass(game.tier)}">${game.tier}</span></td>
+                    <td>${game.replayValue}</td>
+                    <td>${game.notes}</td>
+                    <td><button class="delete-btn" onclick="deleteGame(${game.id})">Delete</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updateStats() {
+            const totalGames = games.length;
+            const totalHours = games.reduce((sum, game) => sum + parseFloat(game.hoursPlayed), 0);
+            const averageRating = totalGames > 0 ? (games.reduce((sum, game) => sum + parseFloat(game.overallRating), 0) / totalGames).toFixed(1) : 0;
+            const sTierCount = games.filter(game => game.tier === 'S').length;
+
+            document.getElementById('totalGames').textContent = totalGames;
+            document.getElementById('totalHours').textContent = totalHours.toFixed(1);
+            document.getElementById('averageRating').textContent = averageRating;
+            document.getElementById('sTierCount').textContent = sTierCount;
+        }
+
+        function exportToCSV() {
+            if (games.length === 0) {
+                alert('No games to export!');
+                return;
+            }
+
+            const headers = ['Date Added', 'Game Title', 'Hours Played', 'Story Rating', 'Gameplay Rating', 'Overall Rating', 'Tier', 'Replay Value', 'Notes'];
+            const csvContent = [
+                headers.join(','),
+                ...games.map(game => [
+                    game.dateAdded,
+                    `"${game.title}"`,
+                    game.hoursPlayed,
+                    game.storyRating,
+                    game.gameplayRating,
+                    game.overallRating,
+                    game.tier,
+                    game.replayValue,
+                    `"${game.notes}"`
+                ].join(','))
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'gaming_tier_list.csv';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        document.getElementById('gameForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const gameData = {
+                title: document.getElementById('gameTitle').value,
+                hoursPlayed: parseFloat(document.getElementById('hoursPlayed').value),
+                storyRating: parseFloat(document.getElementById('storyRating').value),
+                gameplayRating: parseFloat(document.getElementById('gameplayRating').value),
+                overallRating: parseFloat(document.getElementById('overallRating').value),
+                tier: document.getElementById('tierRating').value,
+                replayValue: document.getElementById('replayValue').value,
+                notes: document.getElementById('gameNotes').value
+            };
+
+            addGame(gameData);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Initialize
+        renderTable();
+        updateStats();
+    </script>
+</body>
+</html>
