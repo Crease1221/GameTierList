@@ -3,383 +3,407 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cris's Gaming Tier List</title>
+    <title>Gaming Tier List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4a235a);
             min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 2.5em;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 1.2em;
-        }
-
-        .stats {
+            padding: 40px 20px;
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+            align-items: center;
+            color: #333;
         }
-
-        .stat-item {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
-        .tier-section {
-            margin-bottom: 30px;
-            border-radius: 15px;
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-
-        .tier-header {
-            padding: 20px;
-            font-size: 1.8em;
-            font-weight: bold;
+        
+        header {
+            background: linear-gradient(90deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 30px 40px;
             text-align: center;
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .tier-list-container {
+            padding: 30px;
+        }
+        
+        .tier {
+            display: flex;
+            min-height: 140px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .tier-header {
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: bold;
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-
-        .s-tier { background: linear-gradient(45deg, #ff6b6b, #ff8e8e); }
-        .a-tier { background: linear-gradient(45deg, #4ecdc4, #44a08d); }
-        .b-tier { background: linear-gradient(45deg, #45b7d1, #96c93d); }
-        .c-tier { background: linear-gradient(45deg, #f9ca24, #f0932b); }
-        .d-tier { background: linear-gradient(45deg, #eb4d4b, #6c5ce7); }
-
+        
         .tier-content {
+            flex: 1;
             background: white;
             padding: 20px;
-            min-height: 120px;
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            align-items: flex-start;
+            gap: 20px;
+            align-items: center;
         }
-
+        
+        .tier-s .tier-header { background: #ff6b6b; }
+        .tier-a .tier-header { background: #4ecdc4; }
+        .tier-b .tier-header { background: #45b7d1; }
+        .tier-c .tier-header { background: #96ceb4; }
+        .tier-d .tier-header { background: #ffeaa7; color: #333; }
+        .tier-f .tier-header { background: #636e72; }
+        
         .game-card {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 15px;
-            min-width: 200px;
+            width: 160px;
+            height: 180px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
-
+        
         .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-color: #667eea;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
-
-        .game-title {
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
-
-        .game-ratings {
+        
+        .game-image {
+            height: 110px;
+            background: #f0f2f5;
             display: flex;
-            gap: 10px;
-            margin-bottom: 8px;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
-
-        .rating {
-            background: #667eea;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.8em;
+        
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-
-        .game-date {
+        
+        .game-info {
+            padding: 15px;
+            background: white;
+        }
+        
+        .game-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .game-rating {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
             color: #666;
-            font-size: 0.9em;
         }
-
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 30px;
+            background: rgba(245, 247, 250, 0.9);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #8e44ad;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
         .empty-tier {
             color: #999;
             font-style: italic;
-            text-align: center;
-            padding: 40px;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            font-size: 1.1rem;
         }
-
-        .last-updated {
-            text-align: center;
-            color: #666;
-            margin-top: 30px;
-            font-style: italic;
-        }
-
+        
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
+            .tier {
+                flex-direction: column;
+                min-height: auto;
             }
             
-            h1 {
-                font-size: 2em;
-            }
-            
-            .stats {
-                gap: 15px;
+            .tier-header {
+                width: 100%;
+                height: 70px;
             }
             
             .game-card {
-                min-width: 150px;
+                width: 140px;
+                height: 170px;
+            }
+            
+            .stats {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .stat-item {
+                flex: 1;
+                min-width: 120px;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎮 Cris's Gaming Tier List</h1>
-        <p class="subtitle">Ranking gaming's greatest hits, one masterpiece at a time</p>
+        <header>
+            <h1><i class="fas fa-gamepad"></i> Gaming Tier List</h1>
+            <p>Ranking the best games based on gameplay, story, and overall experience</p>
+        </header>
+        
+        <div class="tier-list-container">
+            <div class="tier tier-s">
+                <div class="tier-header">S</div>
+                <div class="tier-content">
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="The Witcher 3">
+                        </div>
+                        <div class="game-info">
+                            <div class="game-title">The Witcher 3</div>
+                            <div class="game-rating">
+                                <i class="fas fa-star"></i> 9.8/10
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="Red Dead Redemption 2">
+                        </div>
+                        <div class="game-info">
+                            <div class="game-title">Red Dead Redemption 2</div>
+                            <div class="game-rating">
+                                <i class="fas fa-star"></i> 9.7/10
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1551103782-8ab07afd45c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="God of War">
+                        </div>
+                        <div class="game-info">
+                            <div class="game-title">God of War</div>
+                            <div class="game-rating">
+                                <i class="fas fa-star"></i> 9.5/10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tier tier-a">
+                <div class="tier-header">A</div>
+                <div class="tier-content">
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="Elden Ring">
+                        </div>
+                        <div class="game-info">
+                            <div class="game-title">Elden Ring</div>
+                            <div class="game-rating">
+                                <i class="fas fa-star"></i> 9.3/10
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="The Last of Us">
+                        </div>
+                        <div class="game-info">
+                            <div class="game-title">The Last of Us</div>
+                            <div class="game-rating">
+                                <i class="fas fa-star"></i> 9.2/10
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="Horizon Zero Dawn">
+                        </div>
+                        <div class="game-info">
+                            <div class="game-title">Horizon Zero Dawn</div>
+                            <div class="game-rating">
+                                <i class="fas fa-star"></i> 9.0/10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tier tier-b">
+                <div class="tier-header">B</div>
+                <div class="tier-content">
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="Cyberpunk 2077">
+                        </div>
+                        <div class="game-info">
+                            <div class="game-title">Cyberpunk 2077</div>
+                            <div class="game-rating">
+                                <i class="fas fa-star"></i> 8.5/10
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="Assassin's Creed Valhalla">
+                        </div>
+                        <div class="game-info">
+                            <div class="game-title">Assassin's Creed Valhalla</div>
+                            <div class="game-rating">
+                                <i class="fas fa-star"></i> 8.2/10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tier tier-c">
+                <div class="tier-header">C</div>
+                <div class="tier-content">
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="Far Cry 6">
+                        </div>
+                        <div class="game-info">
+                            <div class="game-title">Far Cry 6</div>
+                            <div class="game-rating">
+                                <i class="fas fa-star"></i> 7.5/10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tier tier-d">
+                <div class="tier-header">D</div>
+                <div class="tier-content">
+                    <div class="empty-tier">
+                        No games in this tier - all played games were decent or better!
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tier tier-f">
+                <div class="tier-header">F</div>
+                <div class="tier-content">
+                    <div class="empty-tier">
+                        No games deserve to be in this tier
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="stats">
             <div class="stat-item">
-                <span class="stat-number" id="total-games">0</span>
-                <span class="stat-label">Games Ranked</span>
+                <div class="stat-number">8</div>
+                <div class="stat-label">Games Ranked</div>
             </div>
             <div class="stat-item">
-                <span class="stat-number" id="hours-played">0</span>
-                <span class="stat-label">Hours Played</span>
+                <div class="stat-number">327</div>
+                <div class="stat-label">Hours Played</div>
             </div>
             <div class="stat-item">
-                <span class="stat-number" id="avg-rating">0</span>
-                <span class="stat-label">Avg Rating</span>
+                <div class="stat-number">3</div>
+                <div class="stat-label">S-Tier Games</div>
             </div>
         </div>
-
-        <div class="tier-section">
-            <div class="tier-header s-tier">S TIER - Masterpieces</div>
-            <div class="tier-content" id="s-tier-content">
-                <div class="empty-tier">No games yet - waiting for that perfect 10/10!</div>
-            </div>
-        </div>
-
-        <div class="tier-section">
-            <div class="tier-header a-tier">A TIER - Excellent</div>
-            <div class="tier-content" id="a-tier-content">
-                <div class="empty-tier">Coming soon...</div>
-            </div>
-        </div>
-
-        <div class="tier-section">
-            <div class="tier-header b-tier">B TIER - Good</div>
-            <div class="tier-content" id="b-tier-content">
-                <div class="empty-tier">Coming soon...</div>
-            </div>
-        </div>
-
-        <div class="tier-section">
-            <div class="tier-header c-tier">C TIER - Okay</div>
-            <div class="tier-content" id="c-tier-content">
-                <div class="empty-tier">Coming soon...</div>
-            </div>
-        </div>
-
-        <div class="tier-section">
-            <div class="tier-header d-tier">D TIER - Disappointing</div>
-            <div class="tier-content" id="d-tier-content">
-                <div class="empty-tier">Hopefully this stays empty...</div>
-            </div>
-        </div>
-
-        <div class="last-updated">
-            Last updated: <span id="last-update">Never</span>
-        </div>
+        
+        <footer>
+            <p>Cris's Gaming Tier List &copy; 2023 | Last Updated: October 15, 2023</p>
+        </footer>
     </div>
-
-    <script>
-        //  ======================================== ======================================== ======================================== ========================================
-        // EASY GAME MANAGEMENT - ADD YOUR GAMES HERE  ======================================== ======================================== ========================================
-        // ======================================== ======================================== ======================================== ========================================
-         // Example games - replace with your actual games
-            // {
-            //     title: "The Witcher 3",
-            //     tier: "S",
-            //     storyRating: 10,
-            //     gameplayRating: 9,
-            //     overallRating: 9.5,
-            //     hoursPlayed: 85,
-            //     dateCompleted: "2024-01-15",
-            //     notes: "Amazing story and characters"
-            // },
-            // ADD YOUR GAMES HERE:
-            // Copy the format above and add your games
-            // Tier options: "S", "A", "B", "C", "D"
-            // Date format: "YYYY-MM-DD"
-        const games = [
-            {
-                 title: "Test",
-                 tier: "S",
-                 storyRating: 10,
-                 gameplayRating: 9,
-                 overallRating: 9.5,
-                 hoursPlayed: 85,
-                 dateCompleted: "2024-01-15",
-                 notes: "Amazing story and characters"
-             }
-            
-            // ADD YOUR GAMES HERE:
-            // Copy the format above and add your games
-            // Tier options: "S", "A", "B", "C", "D"
-            // Date format: "YYYY-MM-DD"
-            
-        ];
-
-        // ========================================
-        // AUTO-GENERATED CONTENT - DON'T EDIT BELOW
-        // ========================================
-
-        function renderGames() {
-            // Clear all tier content
-            ['s', 'a', 'b', 'c', 'd'].forEach(tier => {
-                const container = document.getElementById(`${tier}-tier-content`);
-                container.innerHTML = '';
-            });
-
-            // Sort games by overall rating (descending) within each tier
-            const sortedGames = games.sort((a, b) => b.overallRating - a.overallRating);
-
-            // Group games by tier
-            const tierGroups = {
-                S: [],
-                A: [],
-                B: [],
-                C: [],
-                D: []
-            };
-
-            sortedGames.forEach(game => {
-                if (tierGroups[game.tier]) {
-                    tierGroups[game.tier].push(game);
-                }
-            });
-
-            // Render each tier
-            Object.entries(tierGroups).forEach(([tier, tierGames]) => {
-                const container = document.getElementById(`${tier.toLowerCase()}-tier-content`);
-                
-                if (tierGames.length === 0) {
-                    const emptyMessages = {
-                        S: "No games yet - waiting for that perfect 10/10!",
-                        A: "Coming soon...",
-                        B: "Coming soon...",
-                        C: "Coming soon...",
-                        D: "Hopefully this stays empty..."
-                    };
-                    container.innerHTML = `<div class="empty-tier">${emptyMessages[tier]}</div>`;
-                } else {
-                    container.innerHTML = '';
-                    tierGames.forEach(game => {
-                        const gameCard = createGameCard(game);
-                        container.appendChild(gameCard);
-                    });
-                }
-            });
-
-            updateStats();
-        }
-
-        function createGameCard(game) {
-            const card = document.createElement('div');
-            card.className = 'game-card';
-            
-            const formattedDate = new Date(game.dateCompleted).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric'
-            });
-
-            card.innerHTML = `
-                <div class="game-title">${game.title}</div>
-                <div class="game-ratings">
-                    <span class="rating">Story: ${game.storyRating}/10</span>
-                    <span class="rating">Gameplay: ${game.gameplayRating}/10</span>
-                    <span class="rating">Overall: ${game.overallRating}/10</span>
-                </div>
-                <div class="game-date">Completed: ${formattedDate}</div>
-                <div class="game-date">${game.hoursPlayed}h played</div>
-                ${game.notes ? `<div class="game-date" style="margin-top: 5px; font-style: italic;">"${game.notes}"</div>` : ''}
-            `;
-
-            return card;
-        }
-
-        function updateStats() {
-            const totalGames = games.length;
-            const totalHours = games.reduce((sum, game) => sum + game.hoursPlayed, 0);
-            const avgRating = totalGames > 0 ? (games.reduce((sum, game) => sum + game.overallRating, 0) / totalGames).toFixed(1) : 0;
-
-            document.getElementById('total-games').textContent = totalGames;
-            document.getElementById('hours-played').textContent = totalHours;
-            document.getElementById('avg-rating').textContent = avgRating;
-
-            // Update last updated date
-            if (games.length > 0) {
-                const lastGameDate = games.reduce((latest, game) => {
-                    return new Date(game.dateCompleted) > new Date(latest.dateCompleted) ? game : latest;
-                });
-                document.getElementById('last-update').textContent = new Date(lastGameDate.dateCompleted).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            }
-        }
-
-        // Initialize the page
-        renderGames();
-    </script>
 </body>
 </html>
