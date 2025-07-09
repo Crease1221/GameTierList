@@ -14,30 +14,30 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a1f2d, #2d374d);
+            background: linear-gradient(135deg, #f0f5ff, #e6ecfa);
             min-height: 100vh;
             padding: 20px;
-            color: #f0f0f0;
+            color: #333;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(25, 30, 40, 0.95);
+            background: #ffffff;
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
             overflow: hidden;
-            border: 1px solid #3a4668;
+            border: 1px solid #e0e6ff;
         }
         
         /* Navigation Styles */
         .navbar {
-            background: rgba(15, 20, 30, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #3a4668;
+            border-bottom: 1px solid #e0e6ff;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -69,7 +69,7 @@
         }
         
         .nav-links a {
-            color: #a0aec0;
+            color: #5c6bc0;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
@@ -79,8 +79,8 @@
         }
         
         .nav-links a:hover {
-            background: rgba(102, 126, 234, 0.2);
-            color: #fff;
+            background: rgba(102, 126, 234, 0.1);
+            color: #3f51b5;
         }
         
         .nav-links a.active {
@@ -117,7 +117,7 @@
         .header-content h1 {
             font-size: 2.8rem;
             margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .subtitle {
@@ -134,8 +134,8 @@
             justify-content: center;
             gap: 40px;
             padding: 25px;
-            background: rgba(30, 35, 50, 0.8);
-            border-bottom: 1px solid #3a4668;
+            background: rgba(240, 244, 255, 0.8);
+            border-bottom: 1px solid #e0e6ff;
         }
         
         .stat-item {
@@ -150,13 +150,14 @@
         }
         
         .stat-label {
-            color: #a0aec0;
+            color: #5c6bc0;
             font-size: 0.9rem;
         }
         
         /* Tier List Styles */
         .tier-list {
             padding: 30px;
+            background: #ffffff;
         }
         
         .tier {
@@ -164,8 +165,8 @@
             margin-bottom: 15px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-            border: 1px solid #3a4668;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+            border: 1px solid #e0e6ff;
         }
         
         .tier-header {
@@ -180,7 +181,7 @@
         
         .tier-content {
             flex: 1;
-            background: rgba(30, 35, 50, 0.6);
+            background: rgba(240, 244, 255, 0.5);
             padding: 20px;
             display: flex;
             flex-wrap: wrap;
@@ -190,32 +191,33 @@
         }
         
         /* Tier colors */
-        .tier-s .tier-header { background: linear-gradient(180deg, #ff6b6b, #e05555); }
-        .tier-a .tier-header { background: linear-gradient(180deg, #4ecdc4, #3ab0a8); }
-        .tier-b .tier-header { background: linear-gradient(180deg, #45b7d1, #329db4); }
-        .tier-c .tier-header { background: linear-gradient(180deg, #96ceb4, #7db79a); }
-        .tier-d .tier-header { background: linear-gradient(180deg, #ffeaa7, #e6d38e); color: #2d3436; }
+        .tier-s .tier-header { background: linear-gradient(180deg, #ff6b6b, #ff8585); }
+        .tier-a .tier-header { background: linear-gradient(180deg, #4ecdc4, #66d7cf); }
+        .tier-b .tier-header { background: linear-gradient(180deg, #45b7d1, #5ecae6); }
+        .tier-c .tier-header { background: linear-gradient(180deg, #96ceb4, #a8d9c0); }
+        .tier-d .tier-header { background: linear-gradient(180deg, #ffeaa7, #fff1c2); color: #5d4037; }
         
         .game-card {
-            background: rgba(40, 45, 60, 0.8);
+            background: #ffffff;
             border-radius: 10px;
             padding: 0;
             width: 200px;
-            border: 1px solid #3a4668;
+            border: 1px solid #e0e6ff;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.1);
         }
         
         .game-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
             border-color: #667eea;
         }
         
         .game-image {
             height: 120px;
-            background: #2d374d;
+            background: #f0f4ff;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -244,11 +246,11 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: #fff;
+            color: #333;
         }
         
         .game-rating {
-            color: #a0aec0;
+            color: #5c6bc0;
             font-size: 0.9rem;
             margin-bottom: 5px;
             display: flex;
@@ -257,7 +259,7 @@
         }
         
         .game-hours {
-            color: #a0aec0;
+            color: #5c6bc0;
             font-size: 0.85rem;
             display: flex;
             align-items: center;
@@ -265,38 +267,45 @@
         }
         
         .empty-tier {
-            color: #718096;
+            color: #7986cb;
             font-style: italic;
             width: 100%;
             padding: 20px;
             text-align: center;
         }
         
-        /* Page Content Styles */
+        /* Page Content Styles with #f8f9fe background */
         .page-content {
             padding: 40px;
             max-width: 900px;
             margin: 0 auto;
             line-height: 1.7;
+            background: #f8f9fe; /* Updated to your requested color */
+            color: #444;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e6ff;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
         
         .page-content h2 {
             font-size: 2rem;
             margin-bottom: 20px;
             color: #667eea;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid #e0e6ff;
             padding-bottom: 10px;
         }
         
         .page-content h3 {
             font-size: 1.5rem;
             margin: 25px 0 15px;
-            color: #4ecdc4;
+            color: #45b7d1;
         }
         
         .page-content p {
             margin-bottom: 15px;
-            color: #cbd5e0;
+            color: #555;
         }
         
         .page-content ul {
@@ -306,7 +315,7 @@
         
         .page-content li {
             margin-bottom: 10px;
-            color: #cbd5e0;
+            color: #555;
         }
         
         .rating-scale {
@@ -317,14 +326,15 @@
         }
         
         .rating-category {
-            background: rgba(40, 45, 60, 0.6);
+            background: #ffffff;
             border-radius: 10px;
             padding: 20px;
-            border: 1px solid #3a4668;
+            border: 1px solid #e0e6ff;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.1);
         }
         
         .rating-category h4 {
-            color: #4ecdc4;
+            color: #5c6bc0;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -336,9 +346,11 @@
             max-width: 600px;
             margin: 0 auto;
             padding: 30px;
-            background: rgba(40, 45, 60, 0.6);
+            background: #f8f9fe; /* Updated to your requested color */
             border-radius: 15px;
-            border: 1px solid #3a4668;
+            border: 1px solid #e0e6ff;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.1);
+            margin-bottom: 30px;
         }
         
         .form-group {
@@ -349,7 +361,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #a0aec0;
+            color: #5c6bc0;
         }
         
         .form-group input,
@@ -358,9 +370,9 @@
             width: 100%;
             padding: 12px 15px;
             border-radius: 8px;
-            border: 1px solid #3a4668;
-            background: rgba(30, 35, 50, 0.8);
-            color: #fff;
+            border: 1px solid #d1d9ff;
+            background: #ffffff;
+            color: #333;
             font-size: 1rem;
         }
         
@@ -394,10 +406,10 @@
         footer {
             text-align: center;
             padding: 30px;
-            color: #a0aec0;
+            color: #5c6bc0;
             font-size: 0.9rem;
-            border-top: 1px solid #3a4668;
-            background: rgba(15, 20, 30, 0.8);
+            border-top: 1px solid #e0e6ff;
+            background: #f8fbff;
         }
         
         .social-links {
@@ -408,13 +420,13 @@
         }
         
         .social-links a {
-            color: #a0aec0;
+            color: #5c6bc0;
             font-size: 1.5rem;
             transition: color 0.3s ease;
         }
         
         .social-links a:hover {
-            color: #667eea;
+            color: #3f51b5;
         }
         
         /* Responsive Design */
@@ -442,6 +454,21 @@
             .game-card {
                 width: 100%;
             }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+        
+        /* Content Box Styling */
+        .content-box {
+            background: #f8f9fe;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid #e0e6ff;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
@@ -527,90 +554,106 @@
         </div>
         
         <!-- About Page Content (Hidden by default) -->
-        <div id="about-page" class="page-content" style="display: none;">
-            <h2><i class="fas fa-user"></i> About sgCrease</h2>
-            <p>Hello! I'm sgCrease, a former online multiplayer addict who's on a mission to experience the critically acclaimed single-player games I've missed over the years.</p>
-            
-            <h3>My Gaming Journey</h3>
-            <p>For nearly a decade, I was completely immersed in competitive online multiplayer games. From grinding ranks in CS:GO to chasing wins in Fortnite and League of Legends, my gaming life revolved around competition and online interactions.</p>
-            
-            <p>In 2023, I decided to break the cycle and explore the narrative-rich, immersive experiences I'd been neglecting. This tier list documents my journey through these acclaimed games.</p>
-            
-            <h3>Why I'm Doing This</h3>
-            <p>I started this project to:</p>
-            <ul>
-                <li>Experience storytelling masterpieces I've missed</li>
-                <li>Broaden my gaming horizons beyond competitive titles</li>
-                <li>Share my authentic reactions as a newcomer to these games</li>
-                <li>Create a resource for others in similar situations</li>
-            </ul>
-            
-            <h3>Current Challenge</h3>
-            <p>I'm currently working through a list of 50+ critically acclaimed single-player games. My goal is to complete them all and provide honest ratings based on my personal experience.</p>
-            
-            <h3>Stream Schedule</h3>
-            <div class="rating-scale">
-                <div class="rating-category">
-                    <h4><i class="fas fa-calendar-day"></i> Tuesday & Thursday</h4>
-                    <p>8-10 PM GMT</p>
-                    <p>New Game Exploration</p>
+        <div id="about-page" style="display: none;">
+            <div class="page-content">
+                <h2><i class="fas fa-user"></i> About sgCrease</h2>
+                <p>Hello! I'm sgCrease, a former online multiplayer addict who's on a mission to experience the critically acclaimed single-player games I've missed over the years.</p>
+                
+                <div class="content-box">
+                    <h3>My Gaming Journey</h3>
+                    <p>For nearly a decade, I was completely immersed in competitive online multiplayer games. From grinding ranks in CS:GO to chasing wins in Fortnite and League of Legends, my gaming life revolved around competition and online interactions.</p>
+                    
+                    <p>In 2023, I decided to break the cycle and explore the narrative-rich, immersive experiences I'd been neglecting. This tier list documents my journey through these acclaimed games.</p>
                 </div>
-                <div class="rating-category">
-                    <h4><i class="fas fa-calendar-day"></i> Saturday</h4>
-                    <p>2-5 PM GMT</p>
-                    <p>Deep Dive Sessions</p>
+                
+                <div class="content-box">
+                    <h3>Why I'm Doing This</h3>
+                    <p>I started this project to:</p>
+                    <ul>
+                        <li>Experience storytelling masterpieces I've missed</li>
+                        <li>Broaden my gaming horizons beyond competitive titles</li>
+                        <li>Share my authentic reactions as a newcomer to these games</li>
+                        <li>Create a resource for others in similar situations</li>
+                    </ul>
                 </div>
-                <div class="rating-category">
-                    <h4><i class="fas fa-calendar-day"></i> Sunday</h4>
-                    <p>7-9 PM GMT</p>
-                    <p>Final Review & Ranking</p>
+                
+                <div class="content-box">
+                    <h3>Current Challenge</h3>
+                    <p>I'm currently working through a list of 50+ critically acclaimed single-player games. My goal is to complete them all and provide honest ratings based on my personal experience.</p>
+                </div>
+                
+                <h3>Stream Schedule</h3>
+                <div class="rating-scale">
+                    <div class="rating-category">
+                        <h4><i class="fas fa-calendar-day"></i> Tuesday & Thursday</h4>
+                        <p>8-10 PM GMT</p>
+                        <p>New Game Exploration</p>
+                    </div>
+                    <div class="rating-category">
+                        <h4><i class="fas fa-calendar-day"></i> Saturday</h4>
+                        <p>2-5 PM GMT</p>
+                        <p>Deep Dive Sessions</p>
+                    </div>
+                    <div class="rating-category">
+                        <h4><i class="fas fa-calendar-day"></i> Sunday</h4>
+                        <p>7-9 PM GMT</p>
+                        <p>Final Review & Ranking</p>
+                    </div>
                 </div>
             </div>
         </div>
         
         <!-- Rating Method Page Content (Hidden by default) -->
-        <div id="method-page" class="page-content" style="display: none;">
-            <h2><i class="fas fa-star"></i> My Rating Method</h2>
-            <p>I rate games based on my personal experience as a former multiplayer addict exploring single-player games for the first time. Here's how I evaluate each game:</p>
-            
-            <h3>Rating Categories</h3>
-            <p>Each game receives a score from 0-10 in these categories, which are combined for the final rating:</p>
-            
-            <div class="rating-scale">
-                <div class="rating-category">
-                    <h4><i class="fas fa-book"></i> Story & Narrative (30%)</h4>
-                    <p>Quality of storytelling, character development, and emotional impact</p>
+        <div id="method-page" style="display: none;">
+            <div class="page-content">
+                <h2><i class="fas fa-star"></i> My Rating Method</h2>
+                <p>I rate games based on my personal experience as a former multiplayer addict exploring single-player games for the first time. Here's how I evaluate each game:</p>
+                
+                <div class="content-box">
+                    <h3>Rating Categories</h3>
+                    <p>Each game receives a score from 0-10 in these categories, which are combined for the final rating:</p>
+                    
+                    <div class="rating-scale">
+                        <div class="rating-category">
+                            <h4><i class="fas fa-book"></i> Story & Narrative (30%)</h4>
+                            <p>Quality of storytelling, character development, and emotional impact</p>
+                        </div>
+                        <div class="rating-category">
+                            <h4><i class="fas fa-gamepad"></i> Gameplay & Mechanics (30%)</h4>
+                            <p>Combat systems, controls, progression, and overall fun factor</p>
+                        </div>
+                        <div class="rating-category">
+                            <h4><i class="fas fa-globe-europe"></i> World Design (20%)</h4>
+                            <p>Environment design, immersion, and exploration satisfaction</p>
+                        </div>
+                        <div class="rating-category">
+                            <h4><i class="fas fa-headphones"></i> Presentation (10%)</h4>
+                            <p>Visuals, sound design, music, and technical performance</p>
+                        </div>
+                        <div class="rating-category">
+                            <h4><i class="fas fa-heart"></i> Personal Impact (10%)</h4>
+                            <p>How much the game resonated with me personally</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="rating-category">
-                    <h4><i class="fas fa-gamepad"></i> Gameplay & Mechanics (30%)</h4>
-                    <p>Combat systems, controls, progression, and overall fun factor</p>
+                
+                <div class="content-box">
+                    <h3>Tier System</h3>
+                    <p>Based on the final rating, games are placed in one of five tiers:</p>
+                    <ul>
+                        <li><strong>S Tier (9-10):</strong> Masterpiece - Sets a new standard for excellence</li>
+                        <li><strong>A Tier (7-8):</strong> Excellent - Highly recommended with minor flaws</li>
+                        <li><strong>B Tier (5-6):</strong> Good - Enjoyable but with noticeable issues</li>
+                        <li><strong>C Tier (3-4):</strong> Average - Mediocre experience with some redeeming qualities</li>
+                        <li><strong>D Tier (0-2):</strong> Poor - Significant flaws outweigh any positives</li>
+                    </ul>
                 </div>
-                <div class="rating-category">
-                    <h4><i class="fas fa-globe-europe"></i> World Design (20%)</h4>
-                    <p>Environment design, immersion, and exploration satisfaction</p>
-                </div>
-                <div class="rating-category">
-                    <h4><i class="fas fa-headphones"></i> Presentation (10%)</h4>
-                    <p>Visuals, sound design, music, and technical performance</p>
-                </div>
-                <div class="rating-category">
-                    <h4><i class="fas fa-heart"></i> Personal Impact (10%)</h4>
-                    <p>How much the game resonated with me personally</p>
+                
+                <div class="content-box">
+                    <h3>Completion Status</h3>
+                    <p>I only rate games I've completed at least the main story for. Games I haven't finished are marked as "In Progress" and won't appear in the tier list until completed.</p>
                 </div>
             </div>
-            
-            <h3>Tier System</h3>
-            <p>Based on the final rating, games are placed in one of five tiers:</p>
-            <ul>
-                <li><strong>S Tier (9-10):</strong> Masterpiece - Sets a new standard for excellence</li>
-                <li><strong>A Tier (7-8):</strong> Excellent - Highly recommended with minor flaws</li>
-                <li><strong>B Tier (5-6):</strong> Good - Enjoyable but with noticeable issues</li>
-                <li><strong>C Tier (3-4):</strong> Average - Mediocre experience with some redeeming qualities</li>
-                <li><strong>D Tier (0-2):</strong> Poor - Significant flaws outweigh any positives</li>
-            </ul>
-            
-            <h3>Completion Status</h3>
-            <p>I only rate games I've completed at least the main story for. Games I haven't finished are marked as "In Progress" and won't appear in the tier list until completed.</p>
         </div>
         
         <!-- Suggest Game Page Content (Hidden by default) -->
@@ -764,7 +807,7 @@
                         <div class="game-title">${game.title}</div>
                         <div class="game-rating"><i class="fas fa-star"></i> Rating: ${game.rating}/10</div>
                         <div class="game-hours"><i class="fas fa-clock"></i> ${game.hours} hours</div>
-                        ${game.notes ? `<div class="game-notes" style="margin-top:8px;font-size:0.85rem;color:#a0aec0;font-style:italic;">"${game.notes}"</div>` : ''}
+                        ${game.notes ? `<div class="game-notes" style="margin-top:8px;font-size:0.85rem;color:#5c6bc0;font-style:italic;">"${game.notes}"</div>` : ''}
                     </div>
                 `;
                 
